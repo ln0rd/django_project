@@ -14,8 +14,8 @@ services:
       MYSQL_DATABASE: 'pydatabase'
     ports:
       - 3306:3306
-    volumes:
-      - ./sql/database.sql:/docker-entrypoint-initdb.d/init.sql
+#    volumes:
+#      - ./sql/database.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 20s
