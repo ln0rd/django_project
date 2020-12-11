@@ -13,10 +13,19 @@ $ brew install mysql
 $ pip install mysqlclient # do it inside your virtualenv 
 ```
 
+Inside your virtualenv you need install django
+```
+$ pip install django
+```
 
 To Create Project
 ```
 $ django-admin.py startproject django-study
+```
+
+To create App
+```
+$ python manage.py startapp core
 ```
 
 Creating virtualenv
