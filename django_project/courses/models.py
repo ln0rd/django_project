@@ -25,3 +25,8 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+
+    def Meta(parameter_list):
+        verbose_name = "Curso"
+        verbose_name_plural = "Cursos"
+        ordering = ["name"]

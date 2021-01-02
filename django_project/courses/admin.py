@@ -3,5 +3,11 @@ from .models import Course
 
 
 # Register your models here.
-admin.site.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+
+    list_display = ['name', 'slug', 'created_at']
+    search_fields = ['name', 'slug']
+    prepopulated_fields = {'slug': ("name",)}
+
+admin.site.register(Course, CourseAdmin)
 
