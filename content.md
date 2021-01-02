@@ -48,3 +48,7 @@ To deactive virtualenv
 $ deactivate
 ```
 
+To create super user to admin
+```
+python manage.py createsuperuser
+```
