@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class CourseManager(models.Manager):
 
@@ -27,6 +28,11 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
+    # create absolute URL per model
+    def get_absolute_url(self):
+        return reverse('details', args=(self.slug,))
+
+    # effect in admin
     def Meta(parameter_list):
         verbose_name = "Curso"
         verbose_name_plural = "Cursos"

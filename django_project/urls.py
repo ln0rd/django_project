@@ -26,8 +26,9 @@ urlpatterns = [
     path('', core_views.home, name='home'),
     path('contact/', core_views.contact, name='contact'),
     path('courses/', courses_views.courses, name='courses'),
-    path('courses/<int:id>/', courses_views.details, name='details'),
+    path('courses/<str:slug>/', courses_views.details, name='details'),
 ]
 
+# to see images in localhost
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

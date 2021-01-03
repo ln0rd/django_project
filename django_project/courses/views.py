@@ -12,9 +12,10 @@ def courses(request):
      }
     return render(request, template_name, context)
 
-def details(request, id):
+def details(request, slug):
     # course = Course.objects.get(id=id)
-    course = get_object_or_404(Course, id=id)
+    # to get page our response a page 404 from django
+    course = get_object_or_404(Course, slug=slug)
     print(course)
     template_name = 'details.html'
 
