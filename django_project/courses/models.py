@@ -4,10 +4,12 @@ from django.urls import reverse
 class CourseManager(models.Manager):
 
     def search(self, query):
+        ## return a list of
         return self.get_queryset().filter(name__icontains=query, description__icontains=query)
 
     def searchOr(self, query):
         return self.get_queryset().filter( 
+            # or
             models.Q(name__icontains=query) | \
             models.Q(description__icontains=query) 
             )
@@ -23,6 +25,7 @@ class Course(models.Model):
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
     updated_at = models.DateTimeField('Atualizado em', auto_now=True)
 
+    ## insert search and searchOr in Course.objects
     objects = CourseManager()
 
     def __str__(self):

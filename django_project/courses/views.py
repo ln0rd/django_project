@@ -18,14 +18,18 @@ def details(request, slug):
     # to get page our response a page 404 from django
     course = get_object_or_404(Course, slug=slug)
     template_name = 'details.html'
-
+    context = {}
+    ## form contet
     if request.method == 'POST':
         form = ContactCourse(request.POST)
+        if form.is_valid():
+            context['is_valid'] = True
+            print(form.cleaned_data)
+            form = ContactCourse()
+            
     else:
         form = ContactCourse()
 
-    context = {
-        'course': course,
-        'form': form
-    }
+    context['form'] = form
+    context['course'] = course
     return render(request, template_name, context)
