@@ -19,13 +19,17 @@ def details(request, slug):
     course = get_object_or_404(Course, slug=slug)
     template_name = 'details.html'
     context = {}
+    
     ## form contet
     if request.method == 'POST':
         form = ContactCourse(request.POST)
+
         if form.is_valid():
             context['is_valid'] = True
             print(form.cleaned_data)
+            ## send email
             form.send_mail(course)
+            ## clean form
             form = ContactCourse()
             
     else:
