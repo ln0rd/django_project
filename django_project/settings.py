@@ -127,3 +127,20 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'django_project', 'media')
 MEDIA_URL = '/media/'
+
+
+#Email config
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'Nome <leonardobufalo@outlook.com>'
+EMAIL_USE_TLS = True
+#Gmail
+#EMAIL_HOST = 'smtp.gmail.com'
+#Outlook
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST_USER = 'teste@outlook.com'
+EMAIL_HOST_PASSWORD = 'email_password'
+EMAIL_PORT = 587
+
+## email will recieve
+CONTACT_EMAIL = 'xemahec239@liaphoto.com'
