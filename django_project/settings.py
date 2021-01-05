@@ -138,8 +138,8 @@ EMAIL_USE_TLS = True
 #EMAIL_HOST = 'smtp.gmail.com'
 #Outlook
 EMAIL_HOST = 'smtp-mail.outlook.com'
-EMAIL_HOST_USER = 'teste@outlook.com'
-EMAIL_HOST_PASSWORD = 'email_password'
+EMAIL_HOST_USER = 'your_email@outlook.com'
+EMAIL_HOST_PASSWORD = 'your_password'
 EMAIL_PORT = 587
 
 ## email will recieve
