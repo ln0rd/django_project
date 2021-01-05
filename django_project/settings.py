@@ -132,7 +132,7 @@ MEDIA_URL = '/media/'
 #Email config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'Nome <leonardobufalo@outlook.com>'
+DEFAULT_FROM_EMAIL = 'Nome <your_email@outlook.com>'
 EMAIL_USE_TLS = True
 #Gmail
 #EMAIL_HOST = 'smtp.gmail.com'
