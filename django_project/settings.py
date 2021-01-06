@@ -145,3 +145,8 @@ EMAIL_PORT = 587
 
 ## email will recieve
 CONTACT_EMAIL = 'xemahec239@liaphoto.com'
+
+## Auth
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'logout'
