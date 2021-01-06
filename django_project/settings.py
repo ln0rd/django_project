@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_project.core',
     'django_project.courses',
+    'django_project.accounts',
 ]
 
 MIDDLEWARE = [
@@ -130,8 +131,8 @@ MEDIA_URL = '/media/'
 
 
 #Email config
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'Nome <your_email@outlook.com>'
 EMAIL_USE_TLS = True
 #Gmail
