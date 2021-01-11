@@ -26,7 +26,6 @@ def details(request, slug):
 
         if form.is_valid():
             context['is_valid'] = True
-            print(form.cleaned_data)
             ## send email
             form.send_mail(course)
             ## clean form
