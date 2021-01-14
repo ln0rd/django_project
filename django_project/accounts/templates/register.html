@@ -1,24 +1,19 @@
 {% extends 'base.html'%}
 
-{% load static%}
-
 {% block content %}
 <div class="pure-g-r content-ribbon">
     <div class="pure-u-1">
         <h2>Informe seus dados para ser cadastrado</h2>
-        <form action="#register" class="pure-form pure-form-stacked" method="post">
+        <form class="pure-form pure-form-stacked" method="post">
             {% csrf_token %}
-
             <fieldset>
-                {% if form.non_field_errors %}
-                <p>Usuario ou senha incorretos para cadastrar</p>
-                {% endif %}
+                {{ form.non_field_errors }}
 
-                {% for field in form%}
+                {% for field in form %}
                 <div class="pure-control-group">
                     {{ field.label_tag }}
                     {{ field }}
-                    {{ field.error}}
+                    {{ field.errors }}
                 </div>
                 {% endfor %}
 
