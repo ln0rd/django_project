@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 ## extends from UserCreationForm and add new field
 class RegisterForm(UserCreationForm):
@@ -13,3 +14,9 @@ class RegisterForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('Already exist this email registered')
+        return email
