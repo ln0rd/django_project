@@ -6,12 +6,12 @@
 <div class="pure-g-r content-ribbon">
     <div class="pure-u-1">
         <h2>Informe seus dados para ser cadastrado</h2>
-        <form class="pure-form pure-form-stacked" method="post">
+        <form action="#register" class="pure-form pure-form-stacked" method="post">
             {% csrf_token %}
 
             <fieldset>
-                {% if form.is_valid %}
-                <p>Usuario ou senha invalidos para cadastrar</p>
+                {% if form.non_field_errors %}
+                <p>Usuario ou senha incorretos para cadastrar</p>
                 {% endif %}
 
                 {% for field in form%}
