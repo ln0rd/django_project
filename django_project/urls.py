@@ -30,6 +30,7 @@ urlpatterns = [
     path('', core_views.home, name='home'),
     path('contact/', core_views.contact, name='contact'),
     path('login/', django_views.LoginView.as_view(), {'template_name':'login.html'}, name='login'),
+    path('logout/', django_views.LogoutView.as_view(), {'next_page':'home.html'}, name='logout'),
     path('register/', account_views.register, name='register'),
     path('courses/', courses_views.courses, name='courses'),
     path('courses/<str:slug>/', courses_views.details, name='details'),
