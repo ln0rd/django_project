@@ -1,6 +1,5 @@
 # Django study project
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/ln0rd/django_study?style=for-the-badge">
-<img src="https://miro.medium.com/max/1200/0*zwm6LgCEadPeVdnA.png" alt="alt text" width="150">
 
 ## Introduction
 
