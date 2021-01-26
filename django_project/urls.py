@@ -36,6 +36,7 @@ urlpatterns = [
     path('courses/<str:slug>/', courses_views.details, name='details'),
     path('account/dashboard/', account_views.dashboard, name='dashboard'),
     path('account/edit/', account_views.edit, name='edit'),
+    path('account/edit-password/', account_views.edit_password, name='edit_password'),
 ]
 
 # to see images in localhost
