@@ -36,8 +36,6 @@ class RegisterForm(forms.ModelForm):
         return user
 
 
-
-
 class EditAccountForm(forms.ModelForm):
 
     # def clean_email(self):
@@ -50,3 +48,14 @@ class EditAccountForm(forms.ModelForm):
     class Meta(object):
         model = User
         fields = ['username', 'email', 'document', 'name']
+
+
+class PasswordResetForm(forms.Form):
+    email = forms.EmailField(label='Email', required=True)
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            return email
+        raise forms.ValidationError('Nenhum email enontrado')
+        

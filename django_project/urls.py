@@ -37,6 +37,7 @@ urlpatterns = [
     path('account/dashboard/', account_views.dashboard, name='dashboard'),
     path('account/edit/', account_views.edit, name='edit'),
     path('account/edit-password/', account_views.edit_password, name='edit_password'),
+    path('recovery-password/', account_views.password_reset, name='password_reset'),
 ]
 
 # to see images in localhost

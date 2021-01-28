@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
 
-from .forms import RegisterForm, EditAccountForm
+from .forms import RegisterForm, EditAccountForm, PasswordResetForm
+from .models import PasswordReset
+from django_project.core.utils import generate_hash_key
 
 # Create your views here.
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+
+User = get_user_model()
 
 def register(request):
     template_name = 'register.html'
@@ -30,6 +34,25 @@ def register(request):
 
     context['form'] = form
     return render(request, template_name, context)
+
+
+def password_reset(request):
+    template_name = 'password_reset.html'
+    form = PasswordResetForm(request.POST or None)
+    context = {}
+
+    if form.is_valid():
+        user = User.objects.get(email=form.cleaned_data['email'])
+        key = generate_hash_key(user.username)
+        reset = PasswordReset(key=key, user=user)
+        reset.save()
+        context['success'] = True
+
+
+    context['form'] = form
+
+    return render(request, template_name, context)
+
     
 @login_required
 def dashboard(request):
@@ -52,6 +75,7 @@ def edit(request):
         
     else:
         form = EditAccountForm(instance=request.user)
+        reset = PasswordReset()
     
     context['form'] = form
     return render(request, template_name, context)

@@ -42,16 +42,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class PasswordReset(models.Model):
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Usuario', related_name='resets', on_delete=models.CASCADE)
-
-    key = models.CharField('Chave', max_length=100, unique=True)
-    created_at = models.DateField('Creiado em', auto_now_add=True)
-    confirmed = models.BooleanField('Confirmado', default=False, blank=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, verbose_name='Usuário',
+        related_name='resets',
+        on_delete = models.DO_NOTHING,
+    )
+    key = models.CharField('password', max_length=100, unique=True)
+    created_at = models.DateTimeField('created at', auto_now_add=True)
+    confirmed = models.BooleanField('active', blank=True, default=False)
 
     def __str__(self):
         return '{0} em {1}'.format(self.user, self.created_at)
 
     class Meta:
-        verbose_name = 'Nova senha'
-        verbose_name_plural = 'Novas senhas'
+        verbose_name = 'Nova Senha'
+        verbose_name_plural = 'Novas Senhas'
         ordering = ['-created_at']
