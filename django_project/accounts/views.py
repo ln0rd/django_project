@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
@@ -6,9 +6,10 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, EditAccountForm, PasswordResetForm
 from .models import PasswordReset
 from django_project.core.utils import generate_hash_key
+from django_project.core.mail import send_mail_template
 
 # Create your views here.
-from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from django.contrib.auth.forms import SetPasswordForm, UserCreationForm, PasswordChangeForm
 
 User = get_user_model()
 
@@ -47,10 +48,34 @@ def password_reset(request):
         reset = PasswordReset(key=key, user=user)
         reset.save()
         context['success'] = True
+        subject = 'Nova senha Django Project'
+        template_email_name = 'password_reset_mail.html'
+        context = {
+            'reset': reset
+        }
+        send_mail_template(
+            subject=subject,
+            template_name=template_email_name,
+            context=context,
+            recipient_list=[user.email]
+        )
 
 
     context['form'] = form
 
+    return render(request, template_name, context)
+
+
+def password_reset_confirm(request, key):
+    template_name = 'password_reset_confirm.html'
+    context = {}
+    reset = get_object_or_404(PasswordReset, key=key)
+    form = SetPasswordForm(user=reset.user, data=request.POST or None)
+    if form.is_valid():
+        form.save()
+        reset.confirmed == True
+        context['success'] = True
+    context['form'] = form
     return render(request, template_name, context)
 
     
