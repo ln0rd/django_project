@@ -71,9 +71,10 @@ def password_reset_confirm(request, key):
     context = {}
     reset = get_object_or_404(PasswordReset, key=key)
     form = SetPasswordForm(user=reset.user, data=request.POST or None)
-    if form.is_valid():
+    if form.is_valid() and reset.confirmed != True:
+        reset.confirmed = True
         form.save()
-        reset.confirmed == True
+        reset.save()
         context['success'] = True
     context['form'] = form
     return render(request, template_name, context)
