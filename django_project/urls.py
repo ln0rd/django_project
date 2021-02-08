@@ -34,10 +34,12 @@ urlpatterns = [
     path('register/', account_views.register, name='register'),
     path('courses/', courses_views.courses, name='courses'),
     path('courses/<str:slug>/', courses_views.details, name='details'),
+    path('courses/<str:slug>/enrollment/', courses_views.enrollment, name='enrollment'),
     path('account/dashboard/', account_views.dashboard, name='dashboard'),
     path('account/edit/', account_views.edit, name='edit'),
     path('account/edit-password/', account_views.edit_password, name='edit_password'),
     path('recovery-password/', account_views.password_reset, name='password_reset'),
+    path('password_reset_confirm/<str:key>', account_views.password_reset_confirm, name='password_reset_confirm'),
     path('password_reset_confirm/<str:key>', account_views.password_reset_confirm, name='password_reset_confirm'),
 ]
 

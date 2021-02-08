@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
-from .models import Course
+from .models import Course, Enrollment
 from .forms import ContactCourse
 
 # Create your views here.
@@ -37,3 +38,17 @@ def details(request, slug):
     context['form'] = form
     context['course'] = course
     return render(request, template_name, context)
+
+@login_required
+def enrollment(request, slug):
+    course = get_object_or_404(Course, slug=slug)
+    enrollment, created = Enrollment.objects.get_or_create(
+        user=request.user, course=course
+    )
+    if created:
+        # enrollment.active()
+        messages.success(request, 'Você foi inscrito no curso com sucesso')
+    else:
+        messages.info(request, 'Você já está inscrito no curso')
+
+    return redirect('dashboard')
